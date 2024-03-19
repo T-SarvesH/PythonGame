@@ -1,9 +1,8 @@
-# Import required library
+# Importing all required libraries
 import turtle
 import sys
-import time
 
-
+#Execution of the main game starts here
 def play_game(score):
     
     sc = turtle.Screen()
@@ -55,9 +54,10 @@ def play_game(score):
     sketch.penup()
     sketch.hideturtle()
     sketch.goto(0, 260)
-    sketch.write("Player A : 0 Player B: 0",
-                align="center", font=("Courier", 24, "normal"))
+    sketch.write("Player A Score: 0      Player B Score: 0",
+                align="center", font=("Times New Roman", 24, "normal"))
 
+    #Displays either of the two winners depending on highest score
     sketch1 = turtle.Turtle()
     sketch1.speed(0)
     sketch1.color("cyan")
@@ -73,11 +73,8 @@ def play_game(score):
     sketch2.penup()
     sketch2.hideturtle()
     sketch2.goto(0, -260)
-    
 
     
-
-
     # Functions to move paddle vertically
     def paddleaup():
     	y = left_pad.ycor()
@@ -118,7 +115,7 @@ def play_game(score):
         hit_ball.setx(hit_ball.xcor()+hit_ball.dx)
         hit_ball.sety(hit_ball.ycor()+hit_ball.dy)
 
-	# Checking borders
+	# When ball hits the borders
         if hit_ball.ycor() > 280:
         	hit_ball.sety(280)
         	hit_ball.dy *= -1
@@ -132,18 +129,18 @@ def play_game(score):
         	hit_ball.dy *= -1
         	left_player += 1
         	sketch.clear()
-        	sketch.write("Player A : {} Player B: {}".format(
+        	sketch.write("Player A Score: {}      Player B Score: {}".format(
         				left_player, right_player), align="center",
-        				font=("Courier", 24, "normal"))
+        				font=("Times New Roman", 24, "normal"))
 
         if hit_ball.xcor() < -500:
         	hit_ball.goto(0, 0)
         	hit_ball.dy *= -1
         	right_player += 1
         	sketch.clear()
-        	sketch.write("Player A : {} Player B: {}".format(
+        	sketch.write("Player A Score: {}      Player B Score: {}".format(
         							left_player, right_player), align="center",
-        							font=("Courier", 24, "normal"))
+        							font=("Times New Roman", 24, "normal"))
 
     	# Paddle ball collision
         if (hit_ball.xcor() > 360 and hit_ball.xcor() < 370) and (hit_ball.ycor() < right_pad.ycor()+40 and hit_ball.ycor() > right_pad.ycor()-40):
@@ -158,16 +155,13 @@ def play_game(score):
             
             if left_player == score:
                 sketch1.write("Player A has won!!",
-                align="center", font=("Courier", 24, "normal"))
-                time.sleep(1000)
-                
+                align="center", font=("Times New Roman", 24, "normal"))
+                sys.exit()
 
             else:
                 sketch2.write("Player B has won!!",
-                align="center", font=("Courier", 24, "normal"))
-                time.sleep(1000)
-                
-                
+                align="center", font=("Times New Roman", 24, "normal"))
+                sys.exit()
 
 
 score = int(input("Please Enter the Score: "))
